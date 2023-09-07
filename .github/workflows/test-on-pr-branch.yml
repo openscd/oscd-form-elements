@@ -23,6 +23,10 @@ jobs:
         working-directory: ./packages/core
         run: npm run build
 
+      - name: Run tests for oscd-checkbox
+        working-directory: ./components/oscd-checkbox
+        run: npm run test
+
       - name: Run tests for oscd-select
         working-directory: ./components/oscd-select
         run: npm run test
