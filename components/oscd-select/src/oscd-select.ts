@@ -33,12 +33,24 @@ export function redispatchEvent(element: OscdElement, event: Event) {
 }
 
 /**
- * @tag oscd-select
+ *
+ * @prop {boolean} nullable - Whether [[`maybeValue`]] may be `null`
+ * @prop {string} maybeValue - Replacement for `value`, can only be `null` if [[`nullable`]].
+ * @prop {string} defaultValue - The default `value` displayed if [[`maybeValue`]] is `null`.
+ * @prop {string} value - The value of the Form Control
+ * @prop {string} label - Sets floating label value. The label will not float if the selected item has a false value property.
+ * @prop {boolean} required - Whether Select element is required
+ * @prop {string} helper - Helper Text
+ * @prop {string} validationMessage - Validation Message
+ * @prop {boolean} disabled - Whether Select element is disabled
+ *
+ * @slot Content to display in the internal <mwc-select> element
+ * @summary This is the `oscd-select` component, which displays a list of choices with a "null-switch" button to indicate a specific field should be saved as null.
+ * @tagname oscd-select
  */
 export class OscdSelect extends OscdElement {
   static styles: CSSResultGroup = styles;
 
-  /** Whether [[`maybeValue`]] may be `null` */
   @property({ type: Boolean })
   nullable = false;
   private isNull = false;
@@ -52,7 +64,6 @@ export class OscdSelect extends OscdElement {
     if (this.null) this.disable();
     else this.enable();
   }
-  /** Replacement for `value`, can only be `null` if [[`nullable`]]. */
   @property({ type: String })
   get maybeValue(): string | null {
     return this.null ? null : this.value;
@@ -67,16 +78,9 @@ export class OscdSelect extends OscdElement {
       this.value = value;
     }
   }
-  /** The default `value` displayed if [[`maybeValue`]] is `null`. */
   @property({ type: String })
   defaultValue = "";
-  /** Additional values that cause validation to fail. */
-  @property({ type: Array })
-  reservedValues: string[] = [];
 
-  /**
-   * @prop {String} value - The value of the Form Control
-   */
   @property({
     type: String,
   })
