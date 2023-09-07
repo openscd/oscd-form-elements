@@ -25,4 +25,8 @@ jobs:
 
       - name: Run tests for oscd-checkbox
         working-directory: ./components/oscd-checkbox
+
+      - name: Run tests for oscd-select
+        working-directory: ./components/oscd-select
+
         run: npm run test

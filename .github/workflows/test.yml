@@ -23,9 +23,14 @@ jobs:
         working-directory: ./packages/core
         run: npm run build
 
-      - name: Run unit tests
+      - name: Run unit tests for oscd-checkbox
         working-directory: ./components/oscd-checkbox
         run: npm run-script test:unit
+
+      - name: Run unit tests for oscd-select
+        working-directory: ./components/oscd-select
+        run: npm run-script test:unit
+
   visual:
     runs-on: ubuntu-latest
     steps:
@@ -47,18 +52,34 @@ jobs:
         working-directory: ./packages/core
         run: npm run build
 
-      - name: Run visual test
+      - name: Run visual test for oscd-checkbox
         working-directory: ./components/oscd-checkbox
         run: npm run-script test:visual
 
-      - name: Update screenshots
+      - name: Update screenshots for oscd-checkbox
         if: failure()
         working-directory: ./components/oscd-checkbox
         run: npm run test:update
 
-      - name: Commit changes
+      - name: Commit changes for oscd-checkbox
         if: failure()
         uses: EndBug/add-and-commit@v9
         with:
           message: "ci: update screenshots"
           add: "components/oscd-checkbox/screenshots"
+
+      - name: Run visual test for oscd-select
+        working-directory: ./components/oscd-select
+        run: npm run-script test:visual
+
+      - name: Update screenshots for oscd-select
+        if: failure()
+        working-directory: ./components/oscd-select
+        run: npm run test:update
+
+      - name: Commit changes for oscd-select
+        if: failure()
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "ci: update screenshots"
+          add: "components/oscd-select/screenshots"
