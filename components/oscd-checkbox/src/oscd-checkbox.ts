@@ -18,24 +18,30 @@ import { Switch } from "@material/mwc-switch";
 import styles from "./oscd-checkbox.styles.js";
 
 /**
- * @tag oscd-checkbox
+ * @prop {string} label - Text label rendered after the checkbox.
+ * @prop {string} helper - Parenthetical information rendered after the label: `label (helper)`
+ * @prop {boolean} nullable - Whether [[`maybeValue`]] may be `null`
+ * @prop {string} defaultChecked - The default `checked` state while [[`maybeValue`]] is `null`.
+ * @prop {string} maybeValue - Is `"true"` when checked, `"false"` un-checked, `null` if [[`nullable`]].
+ * @prop {boolean} disabled - Disables component including null switch
+ *
+ * @tagname  oscd-checkbox
  */
 export class OscdCheckbox extends OscdElement {
   static styles: CSSResultGroup = styles;
 
-  /** Text label rendered after the checkbox. */
   @property({ type: String })
   label = "";
-  /** Parenthetical information rendered after the label: `label (helper)` */
+
   @property({ type: String })
   helper = "";
-  /** Whether [[`maybeValue`]] may be `null` */
+
   @property({ type: Boolean })
   nullable = false;
-  /** The default `checked` state while [[`maybeValue`]] is `null`. */
+
   @property({ type: Boolean })
   defaultChecked = false;
-  /** Is `"true"` when checked, `"false"` un-checked, `null` if [[`nullable`]]. */
+
   @property({ type: String })
   get maybeValue(): string | null {
     return this.null ? null : this.checked ? "true" : "false";
@@ -47,7 +53,7 @@ export class OscdCheckbox extends OscdElement {
       this.checked = check === "true" ? true : false;
     }
   }
-  /** Disables component including null switch */
+
   @property({ type: Boolean })
   disabled = false;
 
